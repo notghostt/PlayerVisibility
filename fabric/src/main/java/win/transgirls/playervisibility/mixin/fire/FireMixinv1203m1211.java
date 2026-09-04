@@ -1,7 +1,7 @@
 package win.transgirls.playervisibility.mixin.fire;
 
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,7 +13,7 @@ import win.transgirls.crossfabric.annotation.VersionedMixin;
 import win.transgirls.playervisibility.PlayerVisibility;
 import win.transgirls.playervisibility.config.ModConfig;
 
-@Mixin(value = EntityRenderDispatcher.class, priority = 1001)
+@Mixin(value = EntityRenderManager.class, priority = 1001)
 @VersionedMixin({">=1.20.3", "<=1.21.1"})
 public class FireMixinv1203m1211 {
     @Inject(method = "(Lnet/minecraft/class_4587;Lnet/minecraft/class_4597;Lnet/minecraft/class_1297;Lorg/joml/Quaternionf;)V", at = @At("HEAD"), cancellable = true)

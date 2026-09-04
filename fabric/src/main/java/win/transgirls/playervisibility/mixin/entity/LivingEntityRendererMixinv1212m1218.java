@@ -25,7 +25,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 @Mixin(value = LivingEntityRenderer.class, priority = 1001)
-@VersionedMixin({">=1.21.2", "<=1.21.8"})
+@VersionedMixin({">=1.21.2", "<=1.21.11"})
 public class LivingEntityRendererMixinv1212m1218 {
     @Unique
     private MethodHandles.Lookup lookup = MethodHandles.lookup();

@@ -6,7 +6,9 @@ plugins {
 apply plugin: 'fabric-loom'
 apply plugin: 'maven-publish'
 
-archivesBaseName = "${rootProject.name}-${project.name}"
+base {
+    archivesName = "${rootProject.name}-${project.name}"
+}
 
 repositories {
     maven {
@@ -57,6 +59,6 @@ processResources {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }

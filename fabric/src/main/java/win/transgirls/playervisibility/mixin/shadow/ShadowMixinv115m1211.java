@@ -1,7 +1,7 @@
 package win.transgirls.playervisibility.mixin.shadow;
 
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.WorldView;
@@ -13,7 +13,7 @@ import win.transgirls.crossfabric.annotation.VersionedMixin;
 import win.transgirls.playervisibility.PlayerVisibility;
 import win.transgirls.playervisibility.config.ModConfig;
 
-@Mixin(value = EntityRenderDispatcher.class, priority = 1001)
+@Mixin(value = EntityRenderManager.class, priority = 1001)
 @VersionedMixin({">=1.15", "<=1.21.1"})
 public class ShadowMixinv115m1211 {
     @Inject(method = "renderShadow", at = @At("HEAD"), cancellable = true)

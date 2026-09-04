@@ -25,22 +25,15 @@ import java.lang.reflect.InvocationTargetException;
 
 @Mixin(value = LivingEntityRenderer.class, priority = 1001)
 @VersionedMixin({">=1.15", "<=1.20.6"})
-public class LivingEntityRendererMixinv115m1206<T extends LivingEntity, M extends EntityModel<T>> extends EntityRenderer<T> implements FeatureRendererContext<T, M> {
-    @Shadow
-    protected M model;
-
-    protected LivingEntityRendererMixinv115m1206(EntityRendererFactory.Context ctx) {
-        super(ctx);
-    }
+public class LivingEntityRendererMixinv115m1206 {
 
     @Inject(method = "render(Lnet/minecraft/entity/LivingEntity;FFLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;I)V", at = @At("HEAD"), cancellable = true)
-    private void injectRender(T entity, float f, float g, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    private void injectRender(LivingEntity entity, float f, float g, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         HideInfo info = PlayerVisibility.computeHideInfoForEntityOrState(entity);
         if (info.hide && info.alpha == 0.0f) {
             ci.cancel();
 
             if (!ModConfig.hideNametags) {
-                super.render(entity, f, g, matrices, vertexConsumers, light);
             }
         }
     }
@@ -53,7 +46,7 @@ public class LivingEntityRendererMixinv115m1206<T extends LivingEntity, M extend
             ),
             index = 7
     )
-    private float injectAlpha(float alpha, @Local(argsOnly = true) T entity) {
+    private float injectAlpha(float alpha, @Local(argsOnly = true) LivingEntity entity) {
         HideInfo info = PlayerVisibility.computeHideInfoForEntityOrState(entity);
         if (info.hide) {
             return info.alpha;
@@ -62,13 +55,4 @@ public class LivingEntityRendererMixinv115m1206<T extends LivingEntity, M extend
         return alpha;
     }
 
-    @Override
-    public M getModel() {
-        return model;
-    }
-
-    @Override
-    public Identifier getTexture(T entity) {
-        return null;
-    }
 }

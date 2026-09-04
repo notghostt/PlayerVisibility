@@ -1,7 +1,7 @@
 package win.transgirls.playervisibility.mixin.hitbox;
 
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,7 +12,7 @@ import win.transgirls.crossfabric.annotation.VersionedMixin;
 import win.transgirls.playervisibility.PlayerVisibility;
 import win.transgirls.playervisibility.config.ModConfig;
 
-@Mixin(value = EntityRenderDispatcher.class, priority = 1001)
+@Mixin(value = EntityRenderManager.class, priority = 1001)
 @VersionedMixin({">=1.21", "<=1.21.4"})
 public class HitboxMixinv121m1214 {
     @Inject(method = "(Lnet/minecraft/class_4587;Lnet/minecraft/class_4588;Lnet/minecraft/class_1297;FFFF)V", at = @At("HEAD"), cancellable = true)

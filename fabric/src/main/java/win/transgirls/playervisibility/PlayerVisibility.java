@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
+import net.minecraft.util.Identifier;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
@@ -120,13 +121,13 @@ public class PlayerVisibility implements ClientModInitializer {
             } catch (Throwable _e2) {
                 e2 = _e2;
                 try { // read as Entity.class
-                    assert minecraftClient.cameraEntity != null;
+                    assert minecraftClient.getCameraEntity() != null;
 
                     Entity entity = ((Entity) entityOrState);
 
                     Text name = entity.getName();
                     Text displayName = entity.getDisplayName();
-                    double squaredDistanceToCamera = minecraftClient.cameraEntity.squaredDistanceTo(entity);
+                    double squaredDistanceToCamera = minecraftClient.getCameraEntity().squaredDistanceTo(entity);
 
                     return new EntityInfo(name, displayName, squaredDistanceToCamera, entityOrState);
                 } catch (Throwable _e3) {
@@ -208,7 +209,7 @@ public class PlayerVisibility implements ClientModInitializer {
                 "key.player-visibility.toggle",
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_V,
-                "category.player-visibility.main"
+                KeyBinding.Category.create(Identifier.of("playervisibility", "main"))
         ));
 
         switch (ConfigUtil.init()) {

@@ -54,7 +54,7 @@ public class VisibilityCommand {
 
             if (minecraftClient.getNetworkHandler() != null) {
                 for (PlayerListEntry player: minecraftClient.getNetworkHandler().getPlayerList()) {
-                    String suggestion = player.getProfile().getName();
+                    String suggestion = player.getProfile().name();
                     if (suggestion.toLowerCase().startsWith(input)) {
                         builder.suggest(suggestion);
                     }

@@ -8,13 +8,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import win.transgirls.crossfabric.annotation.VersionedMixin;
 
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRenderManager;
 
 import org.spongepowered.asm.mixin.Mixin;
 import win.transgirls.playervisibility.PlayerVisibility;
 import win.transgirls.playervisibility.config.ModConfig;
 
-@Mixin(value = EntityRenderDispatcher.class, priority = 1001)
+@Mixin(value = EntityRenderManager.class, priority = 1001)
 @VersionedMixin({">=1.15", "<=1.20.6"})
 public class HitboxMixinv115m1206 {
     @Inject(method = "renderHitbox", at = @At("HEAD"), cancellable = true)
